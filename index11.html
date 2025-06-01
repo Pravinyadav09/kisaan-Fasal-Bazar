@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisaan Fasal Bazaar - Farmers' Own Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #4CAF50; /* Updated Green */
+            --secondary-color: #F5F5F5; /* Light Gray */
+            --text-color: #333333; /* Dark Gray */
+            --accent-color: #FF8A65; /* Orange */
+            --error-color: #dc3545; /* Red for errors */
+            --success-color: #28a745; /* Green for success */
+            --font-family-base: 'Poppins', sans-serif;
+            --font-family-heading: 'Roboto', sans-serif;
+            --base-font-size: 16px; /* Base font size for rem calculations */
+        }
+
+        html {
+            font-size: var(--base-font-size);
+            scroll-behavior: smooth; /* Enable smooth scrolling */
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 1rem; /* Equivalent to 16px */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px; /* Add horizontal padding */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Remove bottom space */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-family: var(--font-family-base);
+            text-align: center;
+            font-weight: 500;
+        }
+         .btn:disabled {
+             background-color: #cccccc;
+             cursor: not-allowed;
+             transform: none;
+         }
+
+
+        .btn:active:not(:disabled) {
+             transform: scale(0.98); /* Slight shrink on click */
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: #388E3C;
+            color: #fff; /* Ensure text color remains white */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: #fff; /* White background */
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px; /* Increased margin */
+            color: var(--primary-color);
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+        }
+
+        /* Form Message Styles */
+        .form-message {
+             margin-top: 15px;
+             font-weight: 500;
+             padding: 10px;
+             border-radius: 5px;
+             text-align: center;
+         }
+         .form-message.success {
+             background-color: #d4edda;
+             color: #155724;
+             border: 1px solid #c3e6cb;
+         }
+        .form-message.error {
+             background-color: #f8d7da;
+             color: var(--error-color);
+             border: 1px solid #f5c6cb;
+        }
+        .form-message.info {
+             background-color: #e2e3e5;
+             color: #383d41;
+             border: 1px solid #d6d8db;
+        }
+
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* High z-index */
+            width: 100%;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 1.8rem; /* Slightly adjusted size */
+            color: var(--primary-color);
+            font-weight: 700;
+            font-family: var(--font-family-heading);
+        }
+        .logo a { /* Make logo clickable */
+            color: inherit;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px; /* Slightly increased spacing */
+        }
+
+        nav ul li:first-child {
+            margin-left: 0;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            padding: 8px 15px; /* Adjusted padding */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative; /* For potential underline effect */
+        }
+         /* Optional: Add an underline effect on hover/active */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after { /* Style for active link */
+            width: 80%;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: transparent; /* Remove background hover if using underline */
+        }
+        /* Style for active link text */
+         nav ul li a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+         }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: var(--secondary-color);
+            padding: 80px 0; /* Increased padding */
+            text-align: center; /* Center align content by default */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; /* Example background image with overlay */
+            color: #fff;
+            position: relative; /* Needed for potential pseudo-elements */
+        }
+
+        .hero .container {
+            position: relative; /* Content above potential background elements */
+            z-index: 2;
+            /* Flex properties removed for centered text approach */
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #f1f1f1;
+            max-width: 600px; /* Limit width for readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons a {
+            margin: 10px 10px; /* Add vertical margin too */
+        }
+
+        /* --- Features Section --- */
+        .features {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem; /* Slightly larger icon */
+            color: var(--primary-color);
+            margin-bottom: 20px; /* More space below icon */
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem; /* Adjusted size */
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* --- How It Works Section --- */
+        .how-it-works {
+            padding: 60px 0;
+            background-color: var(--secondary-color); /* Match body background */
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            flex-basis: 250px;
+            padding: 25px; /* Increased padding */
+            border-radius: 10px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-number {
+            width: 45px; /* Larger circle */
+            height: 45px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin: 0 auto 20px; /* More space below */
+            font-weight: 600;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+        }
+
+        .step p {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* --- Crops Section --- */
+        .crops-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .search-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px; /* More space below filters */
+            background-color: var(--secondary-color); /* Background for filter area */
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .search-filter input[type="text"],
+        .search-filter select {
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+            flex: 1 1 200px; /* Adjust flex basis */
+            min-width: 180px;
+            background-color: #fff; /* Ensure inputs have white background */
+            font-family: inherit; /* Use base font */
+        }
+        .search-filter input[type="text"]:focus,
+        .search-filter select:focus {
+             border-color: var(--primary-color);
+             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25); /* Focus ring */
+             outline: none;
+        }
+
+        .crops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            min-height: 100px; /* Ensure it has height even when empty/loading */
+        }
+         #crops-container p { /* Style for loading/no crops message */
+            grid-column: 1 / -1; /* Span full width */
+            text-align: center;
+            font-size: 1.1rem;
+            color: #6c757d;
+            padding: 40px 0;
+         }
+
+        .crop-card {
+            background-color: #fff; /* White background for cards */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee; /* Subtle border */
+        }
+
+        .crop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .crop-img {
+            height: 220px; /* Slightly taller images */
+            overflow: hidden;
+            width: 100%;
+            background-color: #f0f0f0; /* Placeholder background */
+        }
+
+        .crop-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease; /* Smoother scale */
+        }
+
+        .crop-card:hover .crop-img img {
+            transform: scale(1.05);
+        }
+
+        .crop-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crop-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .crop-meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Wrap if needed */
+            gap: 10px; /* Gap between meta items */
+            margin-bottom: 10px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .crop-meta span { /* Ensure icons align nicely */
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .crop-price {
+            font-size: 1.3rem; /* Larger price */
+            font-weight: 700; /* Bolder price */
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .crop-location {
+            display: flex;
+            align-items: center;
+            color: #6c757d;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .crop-location i {
+            margin-right: 8px; /* More space for icon */
+            color: var(--primary-color); /* Icon color */
+            width: 1em; /* Align icons better */
+            text-align: center;
+        }
+
+        .crop-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: var(--font-family-base);
+            margin-top: auto; /* Pushes button to bottom */
+            align-self: flex-start;
+            font-weight: 500;
+        }
+
+        .crop-btn:hover {
+            background-color: #388E3C;
+        }
+
+
+        /* --- Sell Section --- */
+        .sell-section {
+            padding: 60px 0;
+            background-color: var(--secondary-color); /* Match body bg */
+        }
+
+        .sell-section .container {
+            max-width: 800px;
+        }
+
+        .sell-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: #fff;
+            padding: 40px; /* More padding */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+         /* Style for required labels */
+         .form-group label.required::after {
+            content: ' *';
+            color: var(--error-color);
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea, /* Added textarea */
+        .form-group input[type="file"] {
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit; /* Ensure form elements inherit font */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%; /* Make inputs take full width */
+            box-sizing: border-box; /* Include padding in width */
+        }
+         .form-group textarea {
+             min-height: 100px; /* Set min height for textarea */
+             resize: vertical; /* Allow vertical resize */
+         }
+
+        .form-group input[type="file"] {
+            padding: 10px; /* Adjust padding for file input */
+            border: 1px dashed #ced4da; /* Dashed border for file input */
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+        .form-group input[type="file"]::-webkit-file-upload-button { /* Style file input button */
+            padding: 8px 15px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+            font-family: inherit; /* Inherit font */
+        }
+         .form-group input[type="file"]::-webkit-file-upload-button:hover {
+              background-color: #388E3C;
+         }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25); /* More prominent focus */
+            outline: none;
+        }
+         /* Style invalid fields */
+         .form-group input:invalid,
+         .form-group select:invalid,
+         .form-group textarea:invalid {
+             border-color: var(--error-color);
+             box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+         }
+
+
+        .form-group small { /* Helper text */
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+         #image-preview {
+             max-width: 200px;
+             max-height: 150px;
+             margin-top: 10px;
+             display: none; /* Hide initially */
+             border: 1px solid #ddd;
+             padding: 5px;
+             border-radius: 5px;
+             object-fit: cover;
+         }
+
+        .sell-form .btn-primary {
+            align-self: flex-start; /* Button aligns to the left */
+            margin-top: 10px; /* Space above button */
+            padding: 12px 30px; /* Larger button padding */
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials {
+            padding: 60px 0;
+            background-color: #fff; /* White background */
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust minmax */
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--secondary-color); /* Light gray background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column; /* Align content vertically */
+            border-left: 5px solid var(--primary-color); /* Accent border */
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: #555; /* Darker text */
+            margin-bottom: 20px;
+            flex-grow: 1; /* Allow content to take space */
+            font-size: 1rem;
+            position: relative;
+            padding-left: 30px; /* Space for quote icon */
+            padding-top: 5px;
+        }
+         .testimonial-content::before { /* Quote icon */
+            content: '\f10d'; /* Font Awesome quote-left */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary-color);
+            font-size: 1.8rem; /* Slightly larger quote */
+            position: absolute;
+            left: 0;
+            top: -2px;
+            opacity: 0.8;
+         }
+
+
+        .testimonial-author {
+            margin-top: auto; /* Push author to bottom */
+            text-align: right; /* Align author info right */
+            padding-top: 10px;
+            border-top: 1px solid #ddd; /* Subtle separator */
+        }
+
+        .testimonial-author h4 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 3px;
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+        }
+
+        .testimonial-author p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* --- Contact Section --- */
+        .contact-section {
+            padding: 60px 0;
+            background-color: var(--secondary-color); /* Match body bg */
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Min width 320px */
+            gap: 40px; /* Increased gap */
+            background-color: #fff; /* White background for the grid container */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px; /* More space */
+            color: var(--primary-color); /* Heading color */
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* More space between items */
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .contact-info i {
+            margin-right: 15px; /* More space for icon */
+            color: var(--primary-color);
+            width: 20px; /* Fixed width for alignment */
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-info .social-links {
+            margin-top: 30px; /* More space above social links */
+        }
+
+        .contact-info .social-links a {
+            display: inline-block;
+            font-size: 1.6rem; /* Larger icons */
+            margin-right: 20px;
+            color: var(--text-color); /* Default icon color */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+         .contact-info .social-links a:last-child {
+             margin-right: 0;
+         }
+
+        .contact-info .social-links a:hover {
+            color: var(--primary-color); /* Color change on hover */
+            transform: translateY(-3px); /* Lift effect */
+        }
+
+        .contact-form h3 { /* Optional heading for form */
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            width: 100%; /* Take full width */
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Include padding in width */
+            font-family: inherit;
+        }
+         .contact-form input:focus,
+         .contact-form textarea:focus {
+             border-color: var(--primary-color);
+             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25); /* More prominent focus */
+             outline: none;
+         }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+         .contact-form .btn-primary {
+            padding: 12px 30px;
+         }
+         /* Contact form message container */
+         #contact-form-message {
+            margin-top: 15px;
+         }
+
+
+        /* --- Footer Styles --- */
+        footer {
+            background-color: var(--text-color);
+            color: #ccc; /* Lighter text color for footer */
+            padding: 60px 0 30px 0; /* Add padding bottom */
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #fff; /* White links */
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust minmax */
+            gap: 40px; /* Increased gap */
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-family: var(--font-family-heading);
+            font-weight: 600;
+            color: #fff; /* White headings */
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px; /* Increased spacing */
+        }
+        .footer-col li a {
+            color: #ccc; /* Lighter link color */
+        }
+        .footer-col li a:hover {
+            color: #fff; /* White on hover */
+            text-decoration: none; /* Remove underline if preferred */
+        }
+
+
+        .footer-col p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .footer-col .social-links { /* Footer social links */
+             margin-top: 15px;
+        }
+        .footer-col .social-links a {
+            font-size: 1.4rem; /* Slightly smaller than contact */
+            margin-right: 15px;
+        }
+
+        #newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #newsletter-form input[type="email"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            flex: 1; /* Take available space */
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            color: #333;
+            font-family: inherit;
+        }
+         #newsletter-form input[type="email"]::placeholder {
+             color: #888;
+         }
+         #newsletter-form input[type="email"]:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 1px;
+         }
+
+        #newsletter-form .btn-primary {
+            padding: 10px 15px; /* Adjust button padding */
+            flex-shrink: 0; /* Prevent button shrinking */
+        }
+        /* Newsletter message container */
+         #newsletter-message {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            min-height: 1.2em; /* Prevent layout shift */
+         }
+
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px; /* Increased padding */
+            margin-top: 40px; /* Space above bottom */
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.85rem;
+            color: #aaa; /* Even lighter text */
+        }
+         .footer-bottom .fa-heart {
+             color: var(--accent-color);
+             vertical-align: middle; /* Align heart nicely */
+         }
+
+        /* --- Media Queries --- */
+        @media (max-width: 992px) {
+            html {
+                font-size: 15px; /* Slightly smaller base font */
+            }
+            .container {
+                padding: 0 15px;
+            }
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+
+             /* Adjust header for smaller screens */
+            header .container {
+                 flex-direction: column;
+                 align-items: center;
+                 gap: 10px;
+            }
+             nav ul {
+                 justify-content: center;
+                 flex-wrap: wrap; /* Allow nav items to wrap */
+                 gap: 5px 10px; /* Small gap between wrapped items */
+             }
+             nav ul li {
+                 margin-left: 0; /* Remove left margin when wrapped */
+             }
+
+
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .steps {
+                justify-content: center; /* Center steps when wrapping */
+            }
+            .contact-grid {
+                 padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px; /* Even smaller base font */
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+             header nav {
+                 width: 100%; /* Make nav take full width */
+                 margin-top: 10px;
+             }
+             nav ul {
+                  font-size: 0.9rem; /* Smaller nav font */
+                  justify-content: center;
+                  gap: 5px 8px;
+             }
+             nav ul li a {
+                 padding: 8px 10px;
+             }
+
+
+            .hero {
+                padding: 60px 0;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+             .hero-content p {
+                font-size: 1rem;
+            }
+            .hero-buttons a {
+                 padding: 10px 20px; /* Smaller buttons */
+                 font-size: 0.9rem;
+                 margin: 5px; /* Reduce margin */
+            }
+
+
+            .features-grid, .testimonials-grid, .footer-grid {
+                grid-template-columns: 1fr; /* Stack columns */
+                gap: 25px;
+            }
+
+            .search-filter {
+                 flex-direction: column;
+                 gap: 10px;
+                 padding: 15px;
+            }
+             .search-filter input[type="text"], .search-filter select {
+                  flex-basis: auto; /* Reset flex basis */
+             }
+
+
+            .crops-grid {
+                 grid-template-columns: 1fr; /* Stack crop cards */
+            }
+            .crop-img {
+                 height: 200px; /* Adjust image height */
+            }
+
+            .sell-form, .contact-grid {
+                padding: 25px; /* Reduce padding */
+            }
+             .contact-grid {
+                  grid-template-columns: 1fr; /* Stack contact info/form */
+                  gap: 30px; /* Reduce gap */
+             }
+
+
+            .footer-grid {
+                 text-align: center; /* Center footer columns */
+            }
+             .footer-col ul {
+                  display: inline-block; /* Center list items */
+                  text-align: left;
+             }
+             #newsletter-form {
+                  flex-direction: column; /* Stack newsletter input/button */
+             }
+             #newsletter-form input[type="email"] {
+                  width: 100%;
+                  box-sizing: border-box;
+             }
+             .footer-col .social-links {
+                  text-align: center; /* Center social links in footer */
+             }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .btn {
+                 padding: 10px 18px;
+                 font-size: 0.9rem;
+            }
+             .sell-form, .contact-grid, .contact-info { /* Adjust padding */
+                 padding: 20px;
+             }
+             .footer-grid {
+                 gap: 30px;
+             }
+             .crop-info h3 { font-size: 1.3rem; }
+             .crop-price { font-size: 1.2rem; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+               <a href="#home"><h1>Kisaan Fasal Bazaar</h1></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#buy">Buy Crop</a></li>
+                    <li><a href="#sell">Sell Crop</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Farmers' Own Digital Platform</h2>
+                <p>Buy & Sell crops directly, eliminate middlemen, and get fair prices. Empowering the heart of India's agriculture.</p>
+                <div class="hero-buttons">
+                    <a href="#sell" class="btn btn-primary">Sell Your Crop</a>
+                    <a href="#buy" class="btn btn-secondary">Browse Crops</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Direct Connection</h3>
+                    <p>Connect directly with buyers/sellers, cutting out intermediaries.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h3>Fair Pricing</h3>
+                    <p>Get competitive prices based on real market data.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Easy & Fast</h3>
+                    <p>Simple platform to list or find crops quickly and efficiently.</p>
+                </div>
+                 <div class="feature-card">
+                     <i class="fas fa-shield-alt"></i>
+                     <h3>Secure Transactions</h3>
+                     <p>Facilitating secure payments and transparent deals.</p>
+                 </div>
+            </div>
+        </div>
+    </section>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Unique prefix 'pm-' for all styles to prevent conflicts */
+        .pm-root {
+            --pm-primary: #007bff;
+            --pm-secondary: #6c757d;
+            --pm-success: #28a745;
+            --pm-danger: #dc3545;
+            --pm-light: #f8f9fa;
+            --pm-dark: #343a40;
+            --pm-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            --pm-radius: 6px;
+            --pm-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: var(--pm-font);
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: var(--pm-dark);
+            line-height: 1.6;
+        }
+
+        .pm-container {
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 15px;
+        }
+
+        .pm-title, .pm-subtitle {
+            color: var(--pm-primary);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .pm-divider {
+            margin: 35px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Form Styling */
+        .pm-form-section {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: var(--pm-radius);
+            box-shadow: var(--pm-shadow);
+        }
+
+        .pm-form-group {
+            margin-bottom: 15px;
+        }
+
+        .pm-form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .pm-form-group input[type="text"],
+        .pm-form-group input[type="number"],
+        .pm-form-group textarea,
+        .pm-form-group input[type="file"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: var(--pm-radius);
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .pm-form-group input:focus,
+        .pm-form-group textarea:focus {
+            border-color: var(--pm-primary);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+
+        .pm-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .pm-form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        .pm-image-preview {
+            max-width: 150px;
+            max-height: 100px;
+            margin-top: 10px;
+            display: none;
+            border: 1px solid #ddd;
+            padding: 3px;
+            border-radius: var(--pm-radius);
+            object-fit: cover;
+        }
+
+        /* Button Styling */
+        .pm-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--pm-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-align: center;
+            font-weight: 500;
+            color: #fff;
+            margin-right: 5px;
+        }
+        .pm-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .pm-btn:active:not(:disabled) { transform: scale(0.98); }
+        .pm-btn-primary { background-color: var(--pm-primary); }
+        .pm-btn-primary:hover:not(:disabled) { background-color: #0056b3; }
+        .pm-btn-success { background-color: var(--pm-success); }
+        .pm-btn-success:hover:not(:disabled) { background-color: #218838; }
+        .pm-btn-sm { padding: 5px 10px; font-size: 0.85rem; }
+
+        /* Product List Styling */
+        .pm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .pm-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--pm-radius);
+            box-shadow: var(--pm-shadow);
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease;
+        }
+        .pm-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        .pm-card-image-wrapper {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-top-left-radius: var(--pm-radius);
+            border-top-right-radius: var(--pm-radius);
+            position: relative;
+        }
+        .pm-card-image-wrapper::before {
+            content: '\f1c5';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: #ccc;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .pm-card-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: var(--pm-radius);
+            border-top-right-radius: var(--pm-radius);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .pm-card-image.error {
+            opacity: 0;
+        }
+
+        .pm-card-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pm-card-info h3 {
+            margin: 0 0 8px 0;
+            color: var(--pm-primary);
+            font-size: 1.2rem;
+            text-align: left;
+        }
+
+        .pm-card-info .pm-description {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .pm-card-info .pm-price {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--pm-success);
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .pm-card-actions {
+            margin-top: auto;
+            text-align: right;
+            padding: 0 15px 15px 15px;
+        }
+
+        /* Message Area Styling */
+        .pm-message {
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: var(--pm-radius);
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        .pm-message-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .pm-message-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .pm-message-info { background-color: #e2e3e5; color: #383d41; border: 1px solid #d6d8db; }
+
+    </style>
+</head>
+<body class="pm-root">
+
+    <div class="pm-container">
+        <h1 class="pm-title">Product Management</h1>
+
+        <!-- Section to Add New Product -->
+        <section class="pm-form-section">
+            <h2 class="pm-subtitle">Add New Product</h2>
+            <form id="pm-add-form">
+                <div class="pm-form-group">
+                    <label for="pm-name">Product Name *</label>
+                    <input type="text" id="pm-name" required>
+                </div>
+                <div class="pm-form-group">
+                    <label for="pm-description">Description</label>
+                    <textarea id="pm-description"></textarea>
+                </div>
+                <div class="pm-form-group">
+                    <label for="pm-price">Price *</label>
+                    <input type="number" id="pm-price" required min="0" step="0.01">
+                </div>
+                <div class="pm-form-group">
+                    <label for="pm-image-input">Image</label>
+                    <input type="file" id="pm-image-input" accept="image/jpeg, image/png, image/gif, image/webp">
+                    <img id="pm-image-preview" class="pm-image-preview" src="#" alt="Image Preview"/>
+                </div>
+                <button type="submit" class="pm-btn pm-btn-primary">Add Product</button>
+            </form>
+            <div id="pm-add-message" class="pm-message"></div>
+        </section>
+
+        <hr class="pm-divider">
+
+        <!-- Section to Display Products -->
+        <section class="pm-display-section">
+            <h2 class="pm-subtitle">Available Products</h2>
+            <div id="pm-list" class="pm-grid">
+                <p>Loading products...</p>
+            </div>
+            <div id="pm-list-message" class="pm-message"></div>
+        </section>
+
+    </div><!-- /pm-container -->
+
+    <script>
+        // Using a namespace pattern for complete isolation
+        (function() {
+            // Configuration
+            const config = {
+                API_URL: '/api/products',
+                MAX_IMAGE_SIZE: 5 * 1024 * 1024 // 5MB
+            };
+
+            // DOM Elements
+            const elements = {
+                form: document.getElementById('pm-add-form'),
+                nameInput: document.getElementById('pm-name'),
+                descInput: document.getElementById('pm-description'),
+                priceInput: document.getElementById('pm-price'),
+                imageInput: document.getElementById('pm-image-input'),
+                imagePreview: document.getElementById('pm-image-preview'),
+                listContainer: document.getElementById('pm-list'),
+                addMessage: document.getElementById('pm-add-message'),
+                listMessage: document.getElementById('pm-list-message')
+            };
+
+            // Helper Functions
+            function showMessage(element, message, type = 'info') {
+                if (!element) return;
+                element.textContent = message;
+                element.className = `pm-message pm-message-${type}`;
+                element.style.display = 'block';
+                
+                if (type === 'success' || type === 'error') {
+                    setTimeout(() => {
+                        element.style.opacity = '0';
+                        setTimeout(() => {
+                            element.style.display = 'none';
+                            element.style.opacity = '1';
+                        }, 500);
+                    }, 5000);
+                }
+            }
+
+            function fileToBase64(file) {
+                return new Promise((resolve, reject) => {
+                    if (!file) {
+                        resolve(null);
+                        return;
+                    }
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = () => reject(new Error("Failed to read file"));
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            function createProductCard(product) {
+                if (!product?.id) return null;
+                
+                const card = document.createElement('div');
+                card.className = 'pm-card';
+                card.dataset.productId = product.id;
+                
+                card.innerHTML = `
+                    <div class="pm-card-image-wrapper">
+                        <img src="${product.image || ''}"
+                             class="pm-card-image ${!product.image ? 'error' : ''}"
+                             onerror="this.classList.add('error')"
+                             alt="${product.name || 'Product image'}">
+                    </div>
+                    <div class="pm-card-info">
+                        <h3>${product.name || 'Unnamed Product'}</h3>
+                        <p class="pm-description">${product.description || 'No description'}</p>
+                        <p class="pm-price">₹${product.price?.toFixed(2) || '0.00'}</p>
+                    </div>
+                    <div class="pm-card-actions">
+                        <button class="pm-btn pm-btn-success pm-btn-sm pm-contact-btn" 
+                                data-product-id="${product.id}">
+                            <i class="fas fa-envelope"></i> Contact 
+                        </button>
+                    </div>
+                `;
+                
+                return card;
+            }
+
+            // Main Functions
+            async function loadProducts() {
+                if (!elements.listContainer) return;
+                
+                elements.listContainer.innerHTML = '<p>Loading products...</p>';
+                showMessage(elements.listMessage, 'Loading...', 'info');
+                
+                try {
+                    const response = await fetch(config.API_URL);
+                    if (!response.ok) {
+                        throw new Error(`Failed to load: ${response.status}`);
+                    }
+                    
+                    const products = await response.json();
+                    elements.listContainer.innerHTML = '';
+                    
+                    if (products.length === 0) {
+                        elements.listContainer.innerHTML = '<p>No products found</p>';
+                        return;
+                    }
+                    
+                    products.forEach(product => {
+                        const card = createProductCard(product);
+                        if (card) elements.listContainer.appendChild(card);
+                    });
+                    
+                } catch (error) {
+                    console.error('Load products error:', error);
+                    showMessage(elements.listMessage, `Error: ${error.message}`, 'error');
+                    elements.listContainer.innerHTML = '<p>Error loading products</p>';
+                }
+            }
+
+            async function handleAddProduct(event) {
+                event.preventDefault();
+                if (!elements.form) return;
+                
+                const submitButton = elements.form.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Adding...';
+                
+                const formData = {
+                    name: elements.nameInput.value,
+                    description: elements.descInput.value,
+                    price: parseFloat(elements.priceInput.value),
+                    imageFile: elements.imageInput.files?.[0]
+                };
+                
+                // Validate
+                const errors = [];
+                if (!formData.name.trim()) errors.push("Product name is required");
+                if (isNaN(formData.price)) errors.push("Valid price is required");
+                if (formData.imageFile && formData.imageFile.size > config.MAX_IMAGE_SIZE) {
+                    errors.push(`Image must be smaller than ${config.MAX_IMAGE_SIZE/1024/1024}MB`);
+                }
+                
+                if (errors.length > 0) {
+                    showMessage(elements.addMessage, errors.join(', '), 'error');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Add Product';
+                    return;
+                }
+                
+                try {
+                    // Process image
+                    const base64Image = formData.imageFile 
+                        ? await fileToBase64(formData.imageFile)
+                        : null;
+                    
+                    // Submit data
+                    const response = await fetch(config.API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: formData.name,
+                            description: formData.description,
+                            price: formData.price,
+                            image: base64Image
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`Server responded with ${response.status}`);
+                    }
+                    
+                    // Success
+                    showMessage(elements.addMessage, 'Product added successfully!', 'success');
+                    elements.form.reset();
+                    elements.imagePreview.style.display = 'none';
+                    loadProducts();
+                    
+                } catch (error) {
+                    console.error('Add product error:', error);
+                    showMessage(elements.addMessage, `Error: ${error.message}`, 'error');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Add Product';
+                }
+            }
+
+            function handleContactClick(productId) {
+                // Replace with your contact logic
+                alert(`Contacting seller about product ID: ${productId}Shyamsinghpadihar465@gmail.com 916261916874\nThis would open a contact form or initiate a chat in a real application.`);
+            }
+
+            // Event Listeners
+            if (elements.form) {
+                elements.form.addEventListener('submit', handleAddProduct);
+            }
+            
+            if (elements.imageInput && elements.imagePreview) {
+                elements.imageInput.addEventListener('change', function(e) {
+                    const file = e.target.files?.[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            elements.imagePreview.src = e.target.result;
+                            elements.imagePreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        elements.imagePreview.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Contact button handler using event delegation
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.pm-contact-btn')) {
+                    const button = e.target.closest('.pm-contact-btn');
+                    const productId = button.dataset.productId;
+                    if (productId) {
+                        handleContactClick(productId);
+                    }
+                }
+            });
+
+            // Initial load
+            loadProducts();
+        })();
+    </script>
+</body>
+</html>
+    <section class="how-it-works" id="about">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Register / Login</h3>
+                    <p>Quickly sign up or log in to your account.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>List or Browse</h3>
+                    <p>Add your crop details or browse available listings.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Connect</h3>
+                    <p>Contact buyers or sellers directly via the platform.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Deal & Transact</h3>
+                    <p>Finalize the deal and complete the transaction securely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Voices from the Fields</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Kisan Fasal Bazaar connected me directly to a bulk buyer in the city. I got a much better price for my tomatoes than the local mandi."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Ramesh Kumar</h4>
+                        <p>Farmer, Haryana</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Listing my wheat was so easy, and I received calls within a day. The platform is transparent and gives power back to us farmers."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Sunita Devi</h4>
+                        <p>Farmer, Punjab</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Finally, a digital space built for farmers like me. No more dependency on middlemen who take a huge cut. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Arjun Patil</h4>
+                        <p>Farmer, Maharashtra</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Vijay Nagar Indore</p>
+                    <p><i class="fas fa-phone"></i> Farmer Helpline: <a href="tel:+916261916874">+916261916874</a> (Toll-Free)</p>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:Shyamsinghpadihar465@gmail.com">Shyamsinghpadihar465@gmail.com</a></p>
+                     <p><i class="fab fa-whatsapp"></i> WhatsApp Support: <a href="https://wa.me/916261916874" target="_blank" rel="noopener noreferrer">+916261916874</a></p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                     <h3>Send Us a Message</h3>
+                    <!-- IMPORTANT: Replace 'your-email@example.com' with your actual FormSubmit.co email -->
+                    <form id="contact-form" action="https://formsubmit.co/your-email@example.com" method="POST">
+                        <!-- FormSubmit Settings -->
+                        <input type="hidden" name="_captcha" value="false"> <!-- Disable Captcha (optional) -->
+                        <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html"> --> <!-- Optional: Redirect URL after submission -->
+                         <input type="hidden" name="_subject" value="New Contact Message from Kisan Fasal Bazaar">
+
+                        <div class="form-group">
+                            <label for="contact-name" class="required">Your Name</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                             <label for="contact-email" class="required">Your Email</label>
+                            <input type="email" id="contact-email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                             <label for="contact-phone">Your Phone (Optional)</label>
+                            <input type="tel" id="contact-phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message" class="required">Your Message</label>
+                            <textarea id="contact-message" name="message" placeholder="Write your query or feedback here..." required minlength="10"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <div id="contact-form-message" class="form-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Kisan Fasal Bazaar</h3>
+                    <p>Empowering Indian farmers by providing a direct, fair, and transparent digital marketplace for their produce.</p>
+                      <div class="social-links">
+                         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                         <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                         <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                         <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                     </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index11.html">Home</a></li>
+                        <li><a href="Aboutus.html">About Us</a></li>
+                         <li><a href="#buy">Buy Crop</a></li>
+                        <li><a href="#sell">Sell Crop</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+              
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get market updates and news directly in your inbox.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Enter Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                     <div id="newsletter-message" class="form-message" style="display: none; background: none; border: none; text-align: left; padding: 5px 0 0 0; font-size: 0.85rem;"></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> Kisaan Fasal Bazaar. All Rights Reserved. Designed with <i class="fas fa-heart"></i> for Farmers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+       <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Configuration ---
+            // IMPORTANT: This assumes your backend API is running here.
+            // Ensure the backend allows requests from this frontend's origin (CORS).
+            const API_BASE_URL = 'http://localhost:8080';
+
+            // --- DOM Elements ---
+            const cropsContainer = document.getElementById('crops-container');
+            const sellForm = document.getElementById('sell-form');
+            const contactForm = document.getElementById('contact-form');
+            const newsletterForm = document.getElementById('newsletter-form');
+            const imageInput = document.getElementById('image');
+            const imagePreview = document.getElementById('image-preview');
+            const sellFormMessage = document.getElementById('sell-form-message');
+            const contactFormMessage = document.getElementById('contact-form-message');
+            const newsletterMessage = document.getElementById('newsletter-message');
+            const searchInput = document.getElementById('search-input');
+            const stateFilter = document.getElementById('state-filter');
+            const cropTypeFilter = document.getElementById('crop-type-filter');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const currentYearSpan = document.getElementById('current-year');
+
+            // --- Helper Functions ---
+
+            /**
+             * Displays messages within designated form message areas.
+             * @param {HTMLElement} element - The message container element.
+             * @param {string} message - The message text.
+             * @param {'error' | 'success' | 'info'} type - The type of message.
+             */
+            function displayMessage(element, message, type = 'info') {
+                if (!element) return;
+                element.textContent = message;
+                element.className = `form-message ${type}`; // Reset classes and add type
+                element.style.display = 'block';
+
+                // Optional: Hide message after a delay
+                if (type === 'success' || type === 'error') {
+                    setTimeout(() => {
+                       // Gently fade out or just hide
+                       element.style.display = 'none';
+                    }, 5000); // Hide after 5 seconds
+                }
+            }
+
+             /**
+             * Builds the full image URL, handling relative paths from the backend.
+             * @param {string | null | undefined} imagePath - Path from backend (e.g., "uploads/wheat.jpg").
+             * @returns {string} Full image URL or placeholder.
+             */
+             function buildImageUrl(imagePath) {
+                 const placeholder = 'https://via.placeholder.com/300x220/EFEFEF/AAAAAA?text=No+Image';
+                 if (!imagePath || typeof imagePath !== 'string' || imagePath.trim() === '') {
+                     console.log("buildImageUrl: No valid imagePath provided, returning placeholder.");
+                     return placeholder;
+                 }
+
+                 // Check if it's already a full URL or a data URI
+                 if (imagePath.startsWith('http') || imagePath.startsWith('data:')) {
+                     console.log(`buildImageUrl: Path is already absolute/data URI: ${imagePath}`);
+                     return imagePath;
+                 }
+
+                 // Assume it's a relative path from the backend server root
+                 // Ensure no double slashes and remove leading slash if present
+                 const cleanPath = imagePath.replace(/^\//, '');
+                 const finalUrl = `${API_BASE_URL}/${cleanPath}`;
+                 console.log(`buildImageUrl: Constructed URL: ${finalUrl}`);
+                 return finalUrl;
+             }
+
+
+             /**
+              * Creates an HTML element for a single crop card.
+              * @param {object} crop - The crop data object from the API.
+              * @returns {HTMLElement} The crop card div element.
+              */
+             function createCropCard(crop) {
+                 console.log('Creating card for crop:', crop);
+                 if (!crop || typeof crop !== 'object') {
+                    console.warn('Invalid crop data received:', crop);
+                    // Optionally return a placeholder or empty element
+                    const errorCard = document.createElement('div');
+                    errorCard.textContent = 'Invalid crop data';
+                    errorCard.style.color = 'red';
+                    errorCard.style.padding = '20px';
+                    return errorCard;
+                 }
+
+                 const cropCard = document.createElement('div');
+                 cropCard.className = 'crop-card';
+                 const imageUrl = buildImageUrl(crop.imagePath); // Use dot notation if sure property exists
+
+                 cropCard.innerHTML = `
+                     <div class="crop-img">
+                         <img src="${imageUrl}"
+                              alt="${crop.name || 'Crop Image'}"
+                              loading="lazy"
+                              onerror="this.onerror=null; this.src='https://via.placeholder.com/300x220/EFEFEF/AAAAAA?text=Load+Error'; console.error('Error loading image:', this.src);">
+                     </div>
+                     <div class="crop-info">
+                         <h3>${crop.name || 'Unnamed Crop'}</h3>
+                          <div class="crop-meta">
+                             <span><i class="fas fa-user"></i> ${crop.farmerName || 'N/A'}</span>
+                             <span><i class="fas fa-weight-hanging"></i> ${crop.quantity || 'N/A'} Quintals</span>
+                         </div>
+                         <div class="crop-price">₹${crop.price ? parseFloat(crop.price).toFixed(2) : 'N/A'} / Quintal</div>
+                         <div class="crop-location">
+                             <i class="fas fa-map-marker-alt"></i>
+                             <span>${crop.location || 'N/A'}</span>
+                         </div>
+                         <button class="crop-btn" onclick="contactFarmer('${crop.contact || 'Not Available'}')">Contact Seller</button>
+                     </div>
+                 `;
+                 return cropCard;
+             }
+
+            // --- API Functions ---
+
+            /**
+             * Loads crops from the backend API and displays them.
+             * @param {object} params - Optional query parameters (unused in default load).
+             */
+             async function loadCrops(params = {}) {
+                 if (!cropsContainer) return;
+                 cropsContainer.innerHTML = '<p>Loading available crops...</p>'; // Show loading message
+
+                 const url = `${API_BASE_URL}/api/crops`; // Endpoint for getting all crops
+                 console.log(`Fetching crops from: ${url}`); // Debug log
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                         // Try to get a specific error message if possible
+                         let errorMsg = `HTTP error! Status: ${response.status}`;
+                         try {
+                             const errData = await response.json();
+                             errorMsg = errData.message || errorMsg;
+                         } catch(e) { /* Ignore if not JSON */ }
+                         throw new Error(errorMsg);
+                    }
+                    const crops = await response.json();
+                    console.log('Crops received:', crops); // Debug log
+
+                    cropsContainer.innerHTML = ''; // Clear loading message/previous crops
+
+                    if (!Array.isArray(crops)) {
+                         console.error("API did not return an array:", crops);
+                         throw new Error("Received invalid data format from server.");
+                    }
+
+                    if (crops.length === 0) {
+                         cropsContainer.innerHTML = '<p>No crops currently listed. Be the first to sell!</p>';
+                         return;
+                    }
+
+                    crops.forEach(crop => {
+                       const cropCard = createCropCard(crop);
+                       cropsContainer.appendChild(cropCard);
+                    });
+
+                } catch (error) {
+                    console.error('Error loading crops:', error);
+                    cropsContainer.innerHTML = `<p style="color: var(--error-color);">Error loading crops: ${error.message}. Please ensure the backend is running and check console for details.</p>`;
+                }
+            }
+
+
+            /**
+             * Searches/filters crops based on input values and updates the display.
+             */
+            async function searchAndFilterCrops() {
+                 if (!cropsContainer) return;
+                 cropsContainer.innerHTML = '<p>Searching for crops...</p>';
+
+                const name = searchInput?.value.trim() || '';
+                const location = stateFilter?.value || '';
+                const type = cropTypeFilter?.value || '';
+
+                // Use the search endpoint if any filter is active, otherwise load all
+                 if (!name && !location && !type) {
+                     loadCrops(); // Load all if no filters
+                     return;
+                 }
+
+                const params = new URLSearchParams();
+                if (name) params.append('name', name);
+                if (location) params.append('location', location);
+                if (type) params.append('type', type);
+
+                const url = `${API_BASE_URL}/api/crops/search?${params.toString()}`;
+                 console.log(`Searching crops using: ${url}`); // Debug log
+
+                try {
+                    const response = await fetch(url);
+                     if (!response.ok) {
+                         let errorMsg = `Search failed! Status: ${response.status}`;
+                         try { const errData = await response.json(); errorMsg = errData.message || errorMsg; } catch(e) {}
+                         throw new Error(errorMsg);
+                     }
+                     const crops = await response.json();
+                     console.log('Search results:', crops); // Debug log
+
+                     cropsContainer.innerHTML = ''; // Clear searching message
+
+                     if (!Array.isArray(crops)) {
+                         console.error("Search API did not return an array:", crops);
+                         throw new Error("Received invalid data format from server during search.");
+                     }
+
+                     if (crops.length === 0) {
+                         cropsContainer.innerHTML = '<p>No crops found matching your search criteria.</p>';
+                         return;
+                     }
+
+                     crops.forEach(crop => {
+                        const cropCard = createCropCard(crop);
+                        cropsContainer.appendChild(cropCard);
+                     });
+
+                 } catch (error) {
+                     console.error('Error searching crops:', error);
+                     cropsContainer.innerHTML = `<p style="color: var(--error-color);">Error searching crops: ${error.message}. Please try again.</p>`;
+                 }
+            }
+
+
+            /**
+             * Handles the submission of the "Sell Crop" form.
+             * @param {Event} event - The form submission event.
+             */
+            async function handleCropSubmit(event) {
+                event.preventDefault();
+                if (!sellForm || !sellFormMessage) return;
+
+                // --- Basic Client-Side Validation ---
+                 if (!sellForm.checkValidity()) {
+                     sellForm.reportValidity(); // Show native browser validation hints
+                     displayMessage(sellFormMessage, 'Please fill out all required fields correctly.', 'error');
+                     return;
+                 }
+
+                 const imageFile = imageInput?.files?.[0];
+                 if (!imageFile) {
+                     displayMessage(sellFormMessage, 'Please select an image for the crop.', 'error');
+                     imageInput?.focus();
+                     return;
+                 }
+                 // Optional: File size check (e.g., max 5MB)
+                 const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+                 if (imageFile.size > maxSize) {
+                      displayMessage(sellFormMessage, `Image file is too large (Max ${maxSize / 1024 / 1024}MB).`, 'error');
+                      imageInput.value = ''; // Clear selection
+                      if(imagePreview) imagePreview.style.display = 'none';
+                      return;
+                 }
+                 // --- End Validation ---
+
+                const formData = new FormData(sellForm);
+                const submitButton = sellForm.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+
+                 submitButton.disabled = true;
+                 submitButton.textContent = 'Submitting...';
+                 displayMessage(sellFormMessage, 'Adding your crop listing...', 'info');
+
+
+                try {
+                    console.log('Submitting crop data via FormData...');
+                    const response = await fetch(`${API_BASE_URL}/api/crops`, {
+                        method: 'POST',
+                        body: formData
+                        // 'Content-Type' header is automatically set by browser for FormData
+                    });
+
+                    console.log(`Submit Response Status: ${response.status}`);
+
+                    if (!response.ok) {
+                        // Try to parse error details from backend
+                        let errorMessage = `Failed to add crop (Status: ${response.status})`;
+                        try {
+                            const errorData = await response.json();
+                            console.error('Error response body:', errorData);
+                            errorMessage = errorData.message || JSON.stringify(errorData) || errorMessage;
+                        } catch (e) {
+                            // If response is not JSON, read as text
+                            try {
+                                const textError = await response.text();
+                                console.error('Error response text:', textError);
+                                errorMessage = textError || errorMessage;
+                            } catch (textE) {
+                                console.error('Could not parse error response');
+                            }
+                        }
+                        throw new Error(errorMessage);
+                    }
+
+                    // --- Success ---
+                    const newCrop = await response.json();
+                    console.log('Successfully added crop, response data:', newCrop);
+                    displayMessage(sellFormMessage, 'Crop added successfully!', 'success');
+                    sellForm.reset(); // Clear the form
+                    if (imagePreview) {
+                        imagePreview.style.display = 'none'; // Hide preview
+                        imagePreview.src = '#'; // Reset preview src
+                    }
+
+                    // Update the UI immediately (prepend the new card)
+                     if (cropsContainer && newCrop && typeof newCrop === 'object') {
+                         console.log('Attempting to prepend new crop card.');
+                         const newCropCard = createCropCard(newCrop);
+
+                         // Remove "No crops" or "Loading" message if present
+                         const placeholderMessage = cropsContainer.querySelector('p');
+                         if (placeholderMessage) {
+                             placeholderMessage.remove();
+                         }
+
+                         cropsContainer.prepend(newCropCard); // Add to the top
+                         console.log('New crop card prepended.');
+
+                         // Scroll to the crops section to show the new card
+                         const cropsSection = document.getElementById('buy');
+                         if (cropsSection) {
+                             cropsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                         }
+                     } else {
+                           console.warn('Could not prepend card. Invalid newCrop data or cropsContainer missing. Reloading list.', newCrop);
+                           loadCrops(); // Fallback: reload all crops
+                     }
+
+                } catch (error) {
+                    console.error('Error submitting crop:', error);
+                    displayMessage(sellFormMessage, `Error: ${error.message || 'Could not submit form. Please check details and try again.'}`, 'error');
+                } finally {
+                     submitButton.disabled = false;
+                     submitButton.textContent = originalButtonText;
+                 }
+            }
+
+         /**
+          * Handles the submission of the contact form using FormSubmit.co.
+          * @param {Event} event - The form submission event.
+          */
+            function handleContactSubmit(event) {
+                event.preventDefault();
+                if (!contactForm || !contactFormMessage) return;
+
+                if (!contactForm.checkValidity()) {
+                    contactForm.reportValidity();
+                    displayMessage(contactFormMessage, 'Please fill out all required fields.', 'error');
+                    return;
+                }
+
+                const formData = new FormData(contactForm);
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                displayMessage(contactFormMessage, 'Sending your message...', 'info');
+
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Required for FormSubmit AJAX success detection
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // FormSubmit doesn't typically return JSON on success via fetch like this
+                        // We assume ok status means success
+                        return { success: true };
+                    } else {
+                         // Try to parse potential JSON error from FormSubmit
+                         return response.json().then(data => {
+                              throw new Error(data.error || `Form submission failed (Status: ${response.status})`);
+                          }).catch(() => { // If not JSON, use status text
+                              throw new Error(`Form submission failed (Status: ${response.status})`);
+                          });
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        displayMessage(contactFormMessage, 'Message sent successfully! We will get back to you soon.', 'success');
+                        contactForm.reset();
+                    } else {
+                        // This path might not be reached if success is based on response.ok
+                        throw new Error('FormSubmit indicated an issue.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending contact message:', error);
+                    displayMessage(contactFormMessage, `Error: ${error.message}`, 'error');
+                })
+                .finally(() => {
+                     submitButton.disabled = false;
+                     submitButton.textContent = originalButtonText;
+                 });
+            }
+
+            /**
+             * Handles the newsletter subscription form submission (simulation).
+             * @param {Event} event - The form submission event.
+             */
+            function handleNewsletterSubmit(event) {
+                event.preventDefault();
+                if (!newsletterForm || !newsletterMessage) return;
+
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                const email = emailInput?.value.trim();
+                const submitButton = newsletterForm.querySelector('button[type="submit"]');
+
+                if (!email || !emailInput.checkValidity()) {
+                     displayMessage(newsletterMessage, 'Please enter a valid email address.', 'error');
+                     emailInput?.focus();
+                     return;
+                }
+
+                // --- Simulation - Replace with your actual backend API call ---
+                console.log('Simulating subscription for:', email);
+                const originalButtonText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Subscribing...';
+                displayMessage(newsletterMessage, 'Processing subscription...', 'info');
+
+
+                setTimeout(() => {
+                     // Simulate success:
+                     displayMessage(newsletterMessage, `Thank you for subscribing!`, 'success');
+                     newsletterForm.reset();
+
+                     // Simulate error (uncomment to test):
+                     /*
+                     displayMessage(newsletterMessage, 'Subscription failed. Please try again later.', 'error');
+                     */
+                     submitButton.disabled = false;
+                     submitButton.textContent = originalButtonText;
+                 }, 1500); // Simulate network delay
+                // --- End of simulation ---
+
+                /* // --- Example of Real Backend Call ---
+                const originalButtonText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Subscribing...';
+                displayMessage(newsletterMessage, 'Processing subscription...', 'info');
+
+                fetch(`${API_BASE_URL}/api/subscribe`, { // Replace with your endpoint
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.message || 'Subscription failed') });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayMessage(newsletterMessage, data.message || 'Subscription successful!', 'success');
+                    newsletterForm.reset();
+                })
+                .catch(error => {
+                    console.error('Newsletter subscription error:', error);
+                    displayMessage(newsletterMessage, `Error: ${error.message}`, 'error');
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                });
+                */
+            }
+
+           // --- Utilities ---
+
+           /** Debounce function to limit frequency of function calls */
+            function debounce(func, delay) {
+                let debounceTimer;
+                return function(...args) {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => {
+                        func.apply(this, args);
+                    }, delay);
+                };
+            }
+
+            /** Update active state in navigation based on scroll position */
+            function updateActiveNavLink() {
+                if (!navLinks || navLinks.length === 0) return;
+
+                let currentSectionId = '';
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                // Adjust offset for the sticky header height + a small buffer
+                const headerHeight = document.querySelector('header')?.offsetHeight || 70;
+                const scrollOffset = headerHeight + 50;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - scrollOffset;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                          currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                // If scrolled near the top, default to 'home'
+                 if (scrollPosition < (sections[0]?.offsetTop || 0) - scrollOffset) {
+                     currentSectionId = 'home';
+                 }
+                 // If scrolled to the very bottom, activate the last section's link (e.g., contact)
+                 else if ((window.innerHeight + scrollPosition) >= document.body.offsetHeight - 50) { // Near bottom
+                     currentSectionId = sections[sections.length - 1]?.getAttribute('id') || currentSectionId;
+                 }
+
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+           // --- Event Listeners ---
+
+            // Sell Form Submission
+           if (sellForm) {
+               sellForm.addEventListener('submit', handleCropSubmit);
+           } else { console.warn("Sell form (#sell-form) not found."); }
+
+           // Contact Form Submission
+           if (contactForm) {
+                contactForm.addEventListener('submit', handleContactSubmit);
+           } else { console.warn("Contact form (#contact-form) not found."); }
+
+           // Newsletter Form Submission
+           if (newsletterForm) {
+                newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+           } else { console.warn("Newsletter form (#newsletter-form) not found."); }
+
+           // Image Preview Listener
+            if (imageInput && imagePreview) {
+                imageInput.addEventListener('change', function(event) {
+                    const file = event.target.files?.[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                        }
+                        reader.readAsDataURL(file);
+                    } else {
+                         imagePreview.style.display = 'none';
+                         imagePreview.src = '#';
+                    }
+                });
+            }
+
+            // Search/Filter Listeners
+            const debouncedSearch = debounce(searchAndFilterCrops, 400); // 400ms delay
+
+            if (searchInput) {
+                searchInput.addEventListener('input', debouncedSearch);
+            } else { console.warn("Search input (#search-input) not found."); }
+            if (stateFilter) {
+                stateFilter.addEventListener('change', searchAndFilterCrops); // No debounce needed for select change
+            } else { console.warn("State filter (#state-filter) not found."); }
+            if (cropTypeFilter) {
+                cropTypeFilter.addEventListener('change', searchAndFilterCrops);
+            } else { console.warn("Crop type filter (#crop-type-filter) not found."); }
+
+
+           // Smooth Scrolling for Internal Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return; // Ignore invalid links
+
+                    const targetElement = document.getElementById(targetId.substring(1));
+                    if (targetElement) {
+                        e.preventDefault(); // Prevent default jump
+
+                        const headerOffset = document.querySelector('header')?.offsetHeight || 70;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+
+                        // Optional: Update hash in URL without jump (supported in modern browsers)
+                        // history.pushState(null, null, targetId);
+
+                        // Optional: Immediately update active link visually (scroll handler will also catch it)
+                        // navLinks.forEach(link => link.classList.remove('active'));
+                        // this.classList.add('active');
+                    } else {
+                         console.warn(`Smooth scroll target not found: ${targetId}`);
+                    }
+                });
+            });
+
+            // Update active nav link on scroll (debounced)
+            window.addEventListener('scroll', debounce(updateActiveNavLink, 100));
+
+           // --- Global Functions (Accessible via window scope) ---
+
+           // Function called by "Contact Seller" buttons
+           window.contactFarmer = function(phoneNumber) {
+               console.log(`Contact attempt: ${phoneNumber}`); // Log phone number
+               if (!phoneNumber || phoneNumber === 'Not Available' || phoneNumber.trim() === '') {
+                    alert("Seller's contact number is not available.");
+                    return;
+               }
+               // Basic validation for display - actual validation happened in form
+                if (!/^[6-9]\d{9}$/.test(phoneNumber.replace(/\s+/g, ''))) { // Allow spaces for display, but check digits
+                    alert(`Invalid contact number format displayed: ${phoneNumber}`);
+                     // Don't proceed if format looks wrong even for display
+                    // return; // Decided to show alert anyway
+                }
+                alert(`Please contact the seller directly at: ${phoneNumber}\n\n(Note: Ensure you verify details before making any transactions.)`);
+
+                // Optional: Try initiating call (browser/device dependent)
+                // try {
+                //     window.location.href = `tel:${phoneNumber.replace(/[^\d+]/g, '')}`; // Clean for tel: link
+                // } catch (e) {
+                //     console.warn("Could not initiate call automatically.");
+                // }
+           };
+
+           // --- Initial Load & Setup ---
+            console.log('Kisan Fasal Bazaar script initialized.');
+
+            // Load initial crops if the container exists
+            if (cropsContainer) {
+               loadCrops();
+            } else {
+               console.warn("Crops container (#crops-container) not found, skipping initial crop load.");
+            }
+
+            // Set initial active navigation link
+            updateActiveNavLink();
+
+            // Set current year in footer
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+       }); // End DOMContentLoaded
+   </script>
+
+</body>
+</html>
